@@ -18,6 +18,7 @@ local.properties
 *.aar
 *.ap_
 *.aab
+/app/src/main/java/com.h4pay.store/networking
 
 # Files for the ART/Dalvik VM
 *.dex

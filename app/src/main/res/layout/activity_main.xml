@@ -26,7 +26,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="12:40"
-                    android:fontFamily="@font/apple_extrabold"
+                    android:fontFamily="@font/spoqahan_bold"
                     android:textSize="130dp"
                     android:textColor="@color/black"/>
 
@@ -49,6 +49,7 @@
                 android:layout_weight="0.5">
 
                 <Button
+                    android:fontFamily="@font/spoqahan_regular"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="교환권 \n사용"
@@ -66,6 +67,7 @@
                 android:layout_weight="0.5">
 
                 <Button
+                    android:fontFamily="@font/spoqahan_regular"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="주문 내역\n확인"
@@ -84,6 +86,7 @@
                 android:layout_weight="0.5">
 
                 <Button
+                    android:fontFamily="@font/spoqahan_regular"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="공지 등록"
@@ -101,6 +104,7 @@
                 android:layout_weight="0.5">
 
                 <Button
+                    android:fontFamily="@font/spoqahan_regular"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="문의사항 \n확인"
@@ -119,6 +123,7 @@
                 android:layout_weight="0.5">
 
                 <Button
+                    android:fontFamily="@font/spoqahan_regular"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="개발자 호출"

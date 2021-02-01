@@ -14,17 +14,17 @@
             android:layout_weight="1"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/textView"
+                android:fontFamily="@font/spoqahan_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="교환권 사용"
                 android:textSize="70sp"/>
 
             <TextView
-                android:id="@+id/explain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView"
+                android:fontFamily="@font/spoqahan_regular"
                 android:text="온라인에서 결제한 상품을 교환할 수 있습니다."
                 android:textSize="20sp"
                 />
@@ -38,11 +38,12 @@
                 android:ems="17"
                 android:inputType="number"
                 android:maxLength="21"
-                android:hint="주문번호">
+                android:hint="주문번호"
+                android:fontFamily="@font/spoqahan_regular">
                 <requestFocus />
             </EditText>
             <TextView
-                android:id="@+id/explain2"
+                android:fontFamily="@font/spoqahan_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/orderIdInput"
@@ -66,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:text="교환권 정보"
                 android:textSize="30dp"
+                android:fontFamily="@font/spoqahan_bold"
                 android:layout_marginBottom="5dp"/>
 
             <TextView
@@ -73,16 +75,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:fontFamily="@font/spoqahan_regular"
                 android:textSize="20sp"/>
 
             <TextView
                 android:id="@+id/lookup_uid"
+                android:fontFamily="@font/spoqahan_regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textSize="20sp"/>
 
             <TextView
+                android:fontFamily="@font/spoqahan_regular"
                 android:id="@+id/lookup_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -90,6 +95,7 @@
                 android:textSize="20sp"/>
 
             <TextView
+                android:fontFamily="@font/spoqahan_regular"
                 android:id="@+id/lookup_expire"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,6 +103,7 @@
                 android:textSize="20sp"/>
 
             <TextView
+                android:fontFamily="@font/spoqahan_regular"
                 android:id="@+id/lookup_amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -111,6 +118,7 @@
                 android:orientation="horizontal"
                 android:padding="5dp">
                 <TextView
+                    android:fontFamily="@font/spoqahan_bold"
                 android:id="@+id/exchanged"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,7 +129,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView13"
+                android:fontFamily="@font/spoqahan_bold"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -158,6 +166,7 @@
                     android:orientation="horizontal" >
 
                     <TextView
+                        android:fontFamily="@font/spoqahan_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -180,6 +189,7 @@
                     android:orientation="horizontal" >
 
                     <TextView
+                        android:fontFamily="@font/spoqahan_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

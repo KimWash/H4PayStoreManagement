@@ -34,6 +34,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:fontFamily="@font/spoqahan_regular"
                         android:id="@+id/pName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -42,6 +43,7 @@
                         android:text=""
                         android:layout_gravity="center_horizontal"/>
                     <TextView
+                        android:fontFamily="@font/spoqahan_regular"
                         android:id="@+id/rec_amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

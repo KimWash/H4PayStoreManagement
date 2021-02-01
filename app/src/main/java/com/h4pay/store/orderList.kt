@@ -82,7 +82,7 @@ class orderList : AppCompatActivity() {
             // Perform your regular JSON Parsing here
             newJsonArray.put(orderList.get(i))
         }
-        if (orderList == null){
+        if (newJsonArray == null){
             Log.e(TAG, "orderList null")
             viewAdapter = orderRecycler(this, JSONArray("[]"))
             Toast.makeText(this, "주문내역이 존재하지 않습니다.", Toast.LENGTH_LONG).show()
@@ -108,7 +108,7 @@ class orderList : AppCompatActivity() {
                     object : RecyclerItemClickListener.OnItemClickListener {
                         @SuppressLint("SetTextI18n")
                         override fun onItemClick(view: View, position: Int) {
-                            loadOrder(orderList, position)
+                            loadOrder(newJsonArray, position)
                         }
                     }
                 )
@@ -120,13 +120,13 @@ class orderList : AppCompatActivity() {
         val notiOrderID = intent.getDoubleExtra("orderID", 0.0)
 
         if (notiOrderID != 0.0){
-            for (i in 0..orderList.length()-1){
-                if (orderList.getJSONObject(i).get("orderid") == notiOrderID) {
+            for (i in 0..newJsonArray.length()-1){
+                if (newJsonArray.getJSONObject(i).get("orderid") == notiOrderID) {
                     Log.e(TAG,
-                        "same item clicked, " + orderList.getJSONObject(i)
+                        "same item clicked, " + newJsonArray.getJSONObject(i)
                             .get("orderid") + ", position: " + i
                     )
-                    loadOrder(orderList, i)
+                    loadOrder(newJsonArray, i)
                 }
             }
         }
@@ -239,6 +239,8 @@ class orderList : AppCompatActivity() {
                                 exchanged.text = ""
                                 exchanged.background = null
                                 recyclerView2.isVisible = false
+                                finish();
+                                startActivity(getIntent());
                             }
                             else{
                                 Toast.makeText(this@orderList, "교환에 실패했습니다.\n이미 교환되었거나 없는 주문번호입니다.", Toast.LENGTH_LONG).show()
@@ -276,6 +278,8 @@ class orderList : AppCompatActivity() {
                                 exchanged.text = ""
                                 exchanged.background = null
                                 recyclerView2.isVisible = false
+                                finish();
+                                startActivity(getIntent());
                             }
                             else{
                                 Toast.makeText(this@orderList, "취소에 실패했습니다.\n없는 주문번호입니다.", Toast.LENGTH_LONG).show()

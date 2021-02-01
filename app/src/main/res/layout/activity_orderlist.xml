@@ -41,6 +41,7 @@
 
 
                 <TextView
+                    android:fontFamily="@font/spoqahan_regular"
                     android:id="@+id/orderlist_uid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -48,6 +49,7 @@
                     android:text=""
                     android:textSize="25sp"/>
                 <TextView
+                    android:fontFamily="@font/spoqahan_regular"
                     android:id="@+id/orderlist_orderID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -55,6 +57,7 @@
                     android:text=""
                     android:textSize="25sp"/>
                 <TextView
+                    android:fontFamily="@font/spoqahan_regular"
                     android:id="@+id/orderlist_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -62,6 +65,7 @@
                     android:text=""
                     android:textSize="25sp"/>
                 <TextView
+                    android:fontFamily="@font/spoqahan_regular"
                     android:id="@+id/orderlist_expire"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -69,6 +73,7 @@
                     android:text=""
                     android:textSize="25sp"/>
                 <TextView
+                    android:fontFamily="@font/spoqahan_regular"
                     android:id="@+id/orderlist_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -78,11 +83,13 @@
                     android:textSize="25sp"/>
 
                 <LinearLayout
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="5dp">
                     <TextView
+                        android:fontFamily="@font/spoqahan_bold"
                         android:id="@+id/orderlist_exchanged"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -114,6 +121,7 @@
                         android:layout_marginRight="10dp"
                         android:background="@drawable/rounded_green">
                         <TextView
+                            android:fontFamily="@font/spoqahan_bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -133,6 +141,7 @@
                         android:padding="10dp"
                         android:background="@drawable/rounded_red">
                         <TextView
+                            android:fontFamily="@font/spoqahan_bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
