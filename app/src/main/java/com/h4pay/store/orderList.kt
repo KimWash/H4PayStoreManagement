@@ -75,19 +75,21 @@ class orderList : AppCompatActivity() {
         //----Data Load and RecyclerView Init----
         viewManager = LinearLayoutManager(this)
 
-        val orderList: JSONArray = getOrderList().execute().get()
+        val orderList: JSONArray? = getOrderList().execute().get()
         var newJsonArray = JSONArray()
-        for (i in orderList.length() - 1 downTo 0)
-        {
-            // Perform your regular JSON Parsing here
-            newJsonArray.put(orderList.get(i))
-        }
-        if (newJsonArray == null){
+        if (orderList == null){
             Log.e(TAG, "orderList null")
             viewAdapter = orderRecycler(this, JSONArray("[]"))
             Toast.makeText(this, "주문내역이 존재하지 않습니다.", Toast.LENGTH_LONG).show()
+            return
         }
         else{
+
+            for (i in orderList.length() - 1 downTo 0)
+            {
+                // Perform your regular JSON Parsing here
+                newJsonArray.put(orderList.get(i))
+            }
             Log.e(TAG, orderList.toString())
             viewAdapter = orderRecycler(this, newJsonArray)
         }

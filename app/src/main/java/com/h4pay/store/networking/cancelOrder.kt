@@ -4,66 +4,47 @@ import android.os.AsyncTask
 import android.util.Log
 import com.h4pay.store.networking.tools.convertStreamToString
 import org.json.JSONObject
-import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
+import java.io.*
 import java.net.HttpURLConnection
+import java.net.MalformedURLException
 import java.net.URL
+import java.net.UnknownHostException
 
 class cancelOrder(private var orderID: String): AsyncTask<Void, Boolean, Boolean>(){
     private val TAG = "NETWORK"
     override fun doInBackground(vararg params: Void?): Boolean? {
-        var inputStream: InputStream? = null
-
-        var result: String? = ""
-
+        var version = 0.0
         try {
-            val urlCon = URL("https://yoon-lab.xyz:23408/api/orders/cancel")
-            val httpCon =
-                urlCon.openConnection() as HttpURLConnection
-            var json = ""
-
-
-            // build jsonObject
-            val jsonObject = JSONObject()
-            jsonObject.accumulate("orderId", orderID)
-
-            // convert JSONObject to JSON to String
-            json = jsonObject.toString()
-
-            // Set some headers to inform server about the type of the content
-            httpCon.setRequestProperty("Accept", "application/json")
-            httpCon.setRequestProperty("Content-type", "application/json")
-
-            // OutputStream으로 POST 데이터를 넘겨주겠다는 옵션.
-            httpCon.doOutput = true
-
-            // InputStream으로 서버로 부터 응답을 받겠다는 옵션.
-            httpCon.doInput = true
-            val os: OutputStream = httpCon.outputStream
-            os.write(json.toByteArray(charset("utf-8")))
-            os.flush()
-
-            // receive response as inputStream
-            try {
-                inputStream = httpCon.inputStream
-
-                // convert inputstream to string
-                if (inputStream != null) result = convertStreamToString.sts(inputStream) else result =
-                    "Did not work!"
-            } catch (e: IOException) {
-                e.printStackTrace()
-            } finally {
-                httpCon.disconnect()
+            // 서버연결
+            val url = URL(
+                "https://yoon-lab.xyz:23408/api/orders/cancel/${orderID}"
+            )
+            val conn = url.openConnection() as HttpURLConnection
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
+            conn.requestMethod = "GET"
+            conn.doInput = true
+            conn.connect()
+            /* 서버 -> 안드로이드 파라메터값 전달 */
+            val iss = conn.inputStream
+            val inn = BufferedReader(InputStreamReader(iss))
+            var line = inn.readLines()
+            var page = String()
+            for (element in line) {
+                page += element
+                Log.e("RECV DATA*", page)
             }
+            val json = JSONObject(page)
+            val canceled = json.getBoolean("cancelSuccess")
+            return canceled
+        } catch (e: UnknownHostException){
+            e.printStackTrace()
+            return null
+        } catch (e: MalformedURLException) {
+            e.printStackTrace()
         } catch (e: IOException) {
             e.printStackTrace()
-        } catch (e: Exception) {
-            Log.d("InputStream", e.localizedMessage)
         }
-        val res = JSONObject(result!!)
-        val success = res.getBoolean("cancelSuccess")
-        return success
+        return null
     }
     override fun onPostExecute(result: Boolean?) {
         super.onPostExecute(result)

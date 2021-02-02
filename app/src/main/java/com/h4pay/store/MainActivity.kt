@@ -16,6 +16,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
+import com.h4pay.store.customDialogs.yesOnlyDialog
+import com.h4pay.store.networking.getOrderList
 import com.h4pay.store.networking.getProdList
 import com.h4pay.store.networking.tools.checkUpdate
 import com.h4pay.store.networking.tools.permissionManager
@@ -39,25 +41,7 @@ class MainActivity : AppCompatActivity() {
     private val MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1
     private val MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2
 
-    fun dispDialog(msg:String, okEvent: () -> Unit, title:String, icon:Int?){
-        val alert_confirm = AlertDialog.Builder(this)
-        alert_confirm.setMessage(msg)
-        alert_confirm.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface: DialogInterface, i: Int ->
-            okEvent()
-        })
-        if (icon != null){
-            alert_confirm
-                    .setTitle(title)
-                    .create()
-                    .setIcon(icon)
-        }
-        else{
-            alert_confirm
-                    .setTitle(title)
-                    .create()
-        }
-        alert_confirm.show()
-    }
+
 
 
     fun checkConnectivity():Boolean{
@@ -88,7 +72,7 @@ class MainActivity : AppCompatActivity() {
             jsonObject = checkUpdate().execute().get()
         }catch(e: Exception){
             Log.e(TAG, "updateServer dead..")
-            dispDialog("업데이트 서버와 연결할 수 없습니다. 오프라인 모드로 실행합니다.", {}, "오류", null)
+            yesOnlyDialog(this, "업데이트 서버와 연결할 수 없습니다. 오프라인 모드로 실행합니다.", {}, "오류", null)
             return 0
         }
         val version = jsonObject.getDouble("version")
@@ -96,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         val versionName = getVersionInfo(this)
 
         if (versionName.toDouble() < version){
-            dispDialog("$version 업데이트가 있어요!\n변경점: $changes",
+            yesOnlyDialog(this, "$version 업데이트가 있어요!\n변경점: $changes",
                     { downloadApp(version) }, "업데이트", R.drawable.ic_baseline_settings_24 )
 
             return 1
@@ -171,7 +155,7 @@ class MainActivity : AppCompatActivity() {
 
         if (checkConnectivity() == false) {
             Log.d(TAG, "인터넷 연결 X")
-            dispDialog("인터넷에 연결되어있지 않습니다. 확인 후 다시 이용 바랍니다.",
+            yesOnlyDialog(this, "인터넷에 연결되어있지 않습니다. 확인 후 다시 이용 바랍니다.",
                     { android.os.Process.killProcess(android.os.Process.myPid()) }, "", null )
 
         }else{
@@ -234,6 +218,15 @@ class MainActivity : AppCompatActivity() {
         val callDeveloperButton = findViewById<Button>(R.id.callDeveloperButton)
         callDeveloperButton.setOnClickListener {
             Toast.makeText(this, "준비 중인 기능입니다.", Toast.LENGTH_SHORT).show()
+        }
+
+        findViewById<Button>(R.id.stockManager).setOnClickListener {
+            var stockManager = Intent(this, stockManagerActivity::class.java)
+            startActivity(stockManager)
+        }
+
+        findViewById<Button>(R.id.calculation).setOnClickListener {
+            calculation().calculate(this, getOrderList().execute().get())
         }
     }
 }

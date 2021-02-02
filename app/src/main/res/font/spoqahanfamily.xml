@@ -4,9 +4,11 @@
         android:fontStyle = "normal"
         android:fontWeight = "400"
         android:font = "@font/spoqahan_regular"/>
+
+    <!--Bold-->
     <font
         android:fontStyle = "normal"
-        android:fontWeight = "400"
+        android:fontWeight = "700"
         android:font = "@font/spoqahan_bold"/>
 
 </font-family>
